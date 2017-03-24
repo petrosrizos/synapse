@@ -18,6 +18,9 @@ describe Synapse::ConfigGenerator::FileOutput do
     allow(mockWatcher).to receive(:name).and_return('example_service')
     backends = [{ 'host' => 'somehost', 'port' => 5555}]
     allow(mockWatcher).to receive(:backends).and_return(backends)
+    allow(mockWatcher).to receive(:config_for_generator).and_return(
+      {'file_output' => {}}
+    )
     mockWatcher
   end
   let(:mockwatcher_2) do
@@ -25,6 +28,9 @@ describe Synapse::ConfigGenerator::FileOutput do
     allow(mockWatcher).to receive(:name).and_return('foobar_service')
     backends = [{ 'host' => 'somehost', 'port' => 1234}]
     allow(mockWatcher).to receive(:backends).and_return(backends)
+    allow(mockWatcher).to receive(:config_for_generator).and_return(
+      {'file_output' => {}}
+    )
     mockWatcher
   end
 
