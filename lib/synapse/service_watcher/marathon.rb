@@ -38,7 +38,9 @@ class Synapse::ServiceWatcher
 
       begin
         @connection = Net::HTTP.new(@marathon_api.host, @marathon_api.port)
-        @connection.open_timeout = 5
+        @connection.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        @connection.open_timeout = 10
+        @connection.use_ssl = @marathon_api.scheme == 'https'
         @connection.start
       rescue => ex
         @connection = nil
